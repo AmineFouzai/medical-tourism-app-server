@@ -1,1 +1,1 @@
-from six import python_2_unicode_compatible
+__name__

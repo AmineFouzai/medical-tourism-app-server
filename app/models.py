@@ -53,7 +53,7 @@ class Hotel(models.Model):
     city:str=models.CharField(max_length=60)
     addresse:str=models.CharField(max_length=60)
     phone:str =models.CharField(max_length=60)
-    photo = models.ImageField(upload_to='uploads')
+    photo = models.ImageField(upload_to='app/uploads')
     price=models.IntegerField()
 
 class TravelAgency(models.Model):
@@ -62,7 +62,7 @@ class TravelAgency(models.Model):
     city:str=models.CharField(max_length=60)
     addresse:str=models.CharField(max_length=60)
     phone:str =models.CharField(max_length=60)
-    photo:str= models.ImageField(upload_to='uploads')
+    photo:str= models.ImageField(upload_to='app/uploads')
     price:str=models.IntegerField()
 
 class MedicalCenter(models.Model):
@@ -71,6 +71,6 @@ class MedicalCenter(models.Model):
     city:str=models.CharField(max_length=60)
     addresse:str=models.CharField(max_length=60)
     phone:str =models.CharField(max_length=60)
-    photo:str= models.ImageField(upload_to='uploads')
-    photo:str= models.ImageField(upload_to='uploads')
+    photo:str= models.ImageField(upload_to='app/uploads')
+    photo:str= models.ImageField(upload_to='app/uploads')
     price:str=models.IntegerField()

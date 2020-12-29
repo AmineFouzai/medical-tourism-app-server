@@ -5,17 +5,18 @@ from .models import (Patient,Doctor,Consultation,RendezVous,Hotel,TravelAgency,M
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ("id","userName","age","email","gender","jobTitle","bodyGroup","city","DiseaseDescription","phone","url")
 
 
 
 class DoctorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Doctor
-        fields = '__all__'
+        fields = ("id","userName","age","email","gender","jobTitle","city","addresse","phone","speciality","url")
+
 
 
 class HotelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Hotel
-        fields = '__all__'
+        fields = ("id","hotelName","city","addresse","phone","photo","price","url")

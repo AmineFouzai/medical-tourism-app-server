@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,6 +30,34 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+GRAPHENE_GENERATOR_MODELS = [
+    {
+        'name': 'patient',
+        'path': 'app.models.Patient',
+        'require_auth': {
+            'queries': ["all", "single"],
+            'mutations': ["create", 'update', 'delete']
+        }
+    }, {
+        'name': 'doctor',
+        'path': 'app.models.Doctor',
+        'require_auth': {
+            'queries': ["all", "single"],
+            'mutations': ["create", 'update', 'delete']
+        }
+    }, {
+        'name': 'hotel',
+        'path': 'app.models.Hotel',
+        'require_auth': {
+            'queries': ["all", "single"],
+            'mutations': ["create", 'update', 'delete']
+        }
+    }
+]
+
+GRAPHENE = {
+    "SCHEMA": "app.schema.schema"
+}
 
 INSTALLED_APPS = [
     'rest_framework',
@@ -40,6 +69,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
+    'graphql_playground'
+
 ]
 
 MIDDLEWARE = [
@@ -119,5 +151,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
 
 STATIC_URL = '/static/'
