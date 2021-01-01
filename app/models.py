@@ -1,40 +1,41 @@
 from django.db import models
 from datetime import date
-# Create your models here.
 
-
-    
-
-class  Patient(models.Model):
+class Patient(models.Model):
     id:int=models.AutoField(primary_key=True)
-    userName:str=models.CharField(max_length=60)
+    firstname:str=models.CharField(max_length=60)
+    lastname:str=models.CharField(max_length=60)
     age:int=models.IntegerField()
     email:str= models.EmailField(max_length=254)
     password:str=models.CharField(max_length=254)
     gender:str=models.CharField(max_length=1)
-    jobTitle:str=models.CharField(max_length=60)
-    bodyGroup:str=models.CharField(max_length=60)
-    city:str=models.CharField(max_length=60)
-    DiseaseDescription:str=models.CharField(max_length=60)
-    phone:str=models.CharField(max_length=60)
+    address:str=models.CharField(max_length=60)
+    phone:int=models.IntegerField()
     def __str__(self):
-        return str(self.id)+","+self.userName
+        return str(self.id)+","+self.firstname+","+self.lastname
 
 class Doctor(models.Model):
     id:int=models.AutoField(primary_key=True)
-    userName:str=models.CharField(max_length=60)
-    age:int=models.IntegerField()
+    firstname:str=models.CharField(max_length=60)
+    lastname:str=models.CharField(max_length=60)
     email:str= models.EmailField(max_length=254)
     password:str=models.CharField(max_length=254)
     price:int=models.IntegerField()
-    jobTitle:str=models.CharField(max_length=60)
-    city:str=models.CharField(max_length=60)
-    addresse:str=models.CharField(max_length=60)
-    phone:str =models.CharField(max_length=60)
+    address:str=models.CharField(max_length=60)
+    phone:int=models.IntegerField()
     speciality:str=models.CharField(max_length=60)
-
     def __str__(self):
-            return str(self.id)+","+self.userName
+        return str(self.id)+","+self.firstname+","+self.lastname
+
+class Hotel(models.Model):
+    id:int=models.AutoField(primary_key=True)
+    name:str=models.CharField(max_length=60)
+    email:str= models.EmailField(max_length=254)
+    password:str=models.CharField(max_length=254)
+    address:str=models.CharField(max_length=60)
+    phone:int=models.IntegerField()
+    photo=models.ImageField(upload_to='app/uploads')
+    price=models.IntegerField()
 
 class RendezVous(models.Model):
     id:int=models.AutoField(primary_key=True)
@@ -50,17 +51,6 @@ class Consultation(models.Model):
     patientId:int=models.ForeignKey(Patient, on_delete=models.CASCADE)
     Diagnosis:str=models.CharField(max_length=60)
     date:date=models.DateField()
-
-
-
-class Hotel(models.Model):
-    id:int=models.AutoField(primary_key=True)
-    hotelName:str=models.CharField(max_length=60)
-    city:str=models.CharField(max_length=60)
-    addresse:str=models.CharField(max_length=60)
-    phone:str =models.CharField(max_length=60)
-    photo = models.ImageField(upload_to='app/uploads')
-    price=models.IntegerField()
 
 class TravelAgency(models.Model):
     id:int=models.AutoField(primary_key=True)
