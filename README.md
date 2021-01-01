@@ -25,5 +25,5 @@ python manage.py migrate app
 ```
 
 ```
-python manage.py rusnerver
+python manage.py runserver
 ```
