@@ -2,11 +2,15 @@ from django.db import models
 from datetime import date
 # Create your models here.
 
+
+    
+
 class  Patient(models.Model):
     id:int=models.AutoField(primary_key=True)
     userName:str=models.CharField(max_length=60)
     age:int=models.IntegerField()
     email:str= models.EmailField(max_length=254)
+    password:str=models.CharField(max_length=254)
     gender:str=models.CharField(max_length=1)
     jobTitle:str=models.CharField(max_length=60)
     bodyGroup:str=models.CharField(max_length=60)
@@ -21,12 +25,14 @@ class Doctor(models.Model):
     userName:str=models.CharField(max_length=60)
     age:int=models.IntegerField()
     email:str= models.EmailField(max_length=254)
-    gender:str=models.CharField(max_length=1)
+    password:str=models.CharField(max_length=254)
+    price:int=models.IntegerField()
     jobTitle:str=models.CharField(max_length=60)
     city:str=models.CharField(max_length=60)
     addresse:str=models.CharField(max_length=60)
     phone:str =models.CharField(max_length=60)
     speciality:str=models.CharField(max_length=60)
+
     def __str__(self):
             return str(self.id)+","+self.userName
 
