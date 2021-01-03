@@ -6,9 +6,9 @@ class Patient(models.Model):
     firstname:str=models.CharField(max_length=60)
     lastname:str=models.CharField(max_length=60)
     age:int=models.IntegerField()
-    email:str= models.EmailField(max_length=254)
+    email:str=models.EmailField(max_length=254, unique=True)
     password:str=models.CharField(max_length=254)
-    gender:str=models.CharField(max_length=1)
+    gender:str=models.CharField(max_length=6)
     address:str=models.CharField(max_length=60)
     phone:int=models.IntegerField()
     def __str__(self):
@@ -18,7 +18,7 @@ class Doctor(models.Model):
     id:int=models.AutoField(primary_key=True)
     firstname:str=models.CharField(max_length=60)
     lastname:str=models.CharField(max_length=60)
-    email:str= models.EmailField(max_length=254)
+    email:str= models.EmailField(max_length=254, unique=True)
     password:str=models.CharField(max_length=254)
     price:int=models.IntegerField()
     address:str=models.CharField(max_length=60)
@@ -30,12 +30,12 @@ class Doctor(models.Model):
 class Hotel(models.Model):
     id:int=models.AutoField(primary_key=True)
     name:str=models.CharField(max_length=60)
-    email:str= models.EmailField(max_length=254)
+    email:str= models.EmailField(max_length=254, unique=True)
     password:str=models.CharField(max_length=254)
     address:str=models.CharField(max_length=60)
     phone:int=models.IntegerField()
     photo=models.ImageField(upload_to='app/uploads')
-    price=models.IntegerField()
+    price:int=models.IntegerField()
 
 class RendezVous(models.Model):
     id:int=models.AutoField(primary_key=True)

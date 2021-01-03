@@ -1,22 +1,24 @@
 from rest_framework import serializers
+
 from .models import (Patient,Doctor,Consultation,RendezVous,Hotel,TravelAgency,MedicalCenter)
 
 
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Patient
-        fields = ("id","userName","age","email","gender","jobTitle","bodyGroup","city","DiseaseDescription","phone","url")
+        fields = ("id","firstname","lastname","age","email","password","gender","address","phone","url")
 
 
 
 class DoctorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Doctor
-        fields = ("id","userName","age","email","gender","jobTitle","city","addresse","phone","speciality","url")
+        fields = ("id","firstname","lastname","email","password","address","phone","speciality","price","url")
 
 
 
 class HotelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Hotel
-        fields = ("id","hotelName","city","addresse","phone","photo","price","url")
+        fields = ("id","name","address","email","password","phone","photo","price","url")
+    
