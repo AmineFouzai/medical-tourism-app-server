@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+import json
 
 class Patient(models.Model):
     id:int=models.AutoField(primary_key=True)
@@ -12,7 +13,7 @@ class Patient(models.Model):
     address:str=models.CharField(max_length=60)
     phone:int=models.IntegerField()
     def __str__(self):
-        return str(self.id)+","+self.firstname+","+self.lastname
+            return str(self.id)
 
 class Doctor(models.Model):
     id:int=models.AutoField(primary_key=True)
@@ -25,7 +26,8 @@ class Doctor(models.Model):
     phone:int=models.IntegerField()
     speciality:str=models.CharField(max_length=60)
     def __str__(self):
-        return str(self.id)+","+self.firstname+","+self.lastname
+        return str(self.id)
+   
 
 class Hotel(models.Model):
     id:int=models.AutoField(primary_key=True)
@@ -36,22 +38,34 @@ class Hotel(models.Model):
     phone:int=models.IntegerField()
     photo=models.ImageField(upload_to='app/uploads')
     price:int=models.IntegerField()
-
+    def __str__(self):
+            return str(self.id)
+   
 class RendezVous(models.Model):
     id:int=models.AutoField(primary_key=True)
-    doctorId:int=models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    patientId:int=models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor:int=models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="rendezvous")
+    patient:int=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="rendezvous")
     Symptoms:str=models.CharField(max_length=60)
     date:date=models.DateField()
-
+    def __str__(self):
+            return str(self.id)
 class Consultation(models.Model):
     id:int=models.AutoField(primary_key=True)
-    rendezVousId:int=models.ForeignKey(RendezVous, on_delete=models.CASCADE)
-    doctorId:int=models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    patientId:int=models.ForeignKey(Patient, on_delete=models.CASCADE)
+    rendezVous:int=models.ForeignKey(RendezVous, on_delete=models.CASCADE, related_name="consultation")
+    doctor:int=models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="consultations")
+    patient:int=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="consultations")
     Diagnosis:str=models.CharField(max_length=60)
     date:date=models.DateField()
-
+    def __str__(self):
+            return str(self.id)
+class Reservation(models.Model):
+    id:int=models.AutoField(primary_key=True)
+    hotel:int=models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name="reservations")
+    patient:int=models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="reservations")
+    fromDate:date=models.DateField()
+    toDate:date=models.DateField()
+    def __str__(self):
+            return str(self.id)
 class TravelAgency(models.Model):
     id:int=models.AutoField(primary_key=True)
     travelAgencyName:str=models.CharField(max_length=60)
@@ -60,7 +74,8 @@ class TravelAgency(models.Model):
     phone:str =models.CharField(max_length=60)
     photo:str= models.ImageField(upload_to='app/uploads')
     price:str=models.IntegerField()
-
+    def __str__(self):
+            return str(self.id)
 class MedicalCenter(models.Model):
     id:int=models.AutoField(primary_key=True)
     medicalCenterName:str=models.CharField(max_length=60)
@@ -70,3 +85,5 @@ class MedicalCenter(models.Model):
     photo:str= models.ImageField(upload_to='app/uploads')
     photo:str= models.ImageField(upload_to='app/uploads')
     price:str=models.IntegerField()
+    def __str__(self):
+            return str(self.id)
